@@ -12,6 +12,7 @@ function App() {
         <Item date="10" month="june" year="1998"></Item>
         <Item date="12" month="april" year="2003"></Item>
       </div>
+
     </div>
   );
 }

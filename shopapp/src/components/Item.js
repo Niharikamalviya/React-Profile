@@ -1,4 +1,24 @@
+import React, { useState } from 'react';
 import './Item.css'
+
+
+const ProductItem = (props) => {
+    const [title, setTitle] = useState(props.title);
+
+    function clickHandler() {
+        setTitle("Popcorn");
+        console.log("button clicked");
+
+        // return (
+        //     <button onclicked="clickHandler">add to cart</button>
+
+        // )
+    }
+
+
+}
+
+
 
 function Item(props) {
     const day = props.date;
@@ -9,7 +29,9 @@ function Item(props) {
         <span> {day}</span>
         <span> {month}</span>
         <span> {year}</span>
+
     </div>
+
     )
 
 };
