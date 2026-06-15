@@ -1,4 +1,6 @@
-function Tours({ tours }) {
+import Card from './Card'
+
+function Tours({ tours, removeTour }) {
 
     return (
         <div>
@@ -6,15 +8,18 @@ function Tours({ tours }) {
                 <h2>Plan For Trip</h2>
             </div>
 
-            {
-                tours.map((tour) => {
-                    return <card> {...tour}</card>
-                })
 
-            }
+            <div>
+                {tours.map((tour) => {
+                    return <Card {...tour} removeTour={removeTour}></Card>
+                })}
+
+
+            </div>
+
 
         </div>
-    )
+    );
 
 }
 
