@@ -16,7 +16,7 @@ const Card = ({ course }) => {
             </div>
             <div>
                 <p>{course.title}</p>
-                <p>{course.decription}</p>
+                <p>{course.description}</p>
             </div>
         </div>
     )
