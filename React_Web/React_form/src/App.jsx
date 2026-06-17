@@ -24,7 +24,7 @@ function App() {
   // using single state to handler multiple input fields
 
   const [formData, setFormData] = useState({ firstName: "", lastName: "", comments: "", isVisible: true, mode: "" });
-  console.log(formData);
+
 
   function changeHandler(event) {
     const { name, value, checked, type, mode } = event.target
@@ -35,14 +35,19 @@ function App() {
         [name]: type === "checkbox" ? checked : value
       }
     });
+  }
 
+  function SubmitHandler(event) {
+    event.preventDefault();
 
+    console.log("Printing form data");
+    console.log(formData);
   }
 
   return (
     <>
       <div>
-        <form>
+        <form onSubmit={SubmitHandler}>
 
           <br></br>
           <input
@@ -91,7 +96,7 @@ function App() {
             id="Online-Mode"
             checked={formData.mode === "Online-Mode"}
           />
-          <labe htmlFor="Online-Mode">Online Mode</labe>
+          <label htmlFor="Online-Mode">Online Mode</label>
 
           <br></br>
           <br></br>
@@ -103,7 +108,12 @@ function App() {
             id="Offline-Mode"
             checked={formData.mode === "Offline-Mode"}
           />
-          <labe htmlFor="Offline-Mode">Offline Mode</labe>
+          <label htmlFor="Offline-Mode">Offline Mode</label>
+
+          <br></br>
+          <br></br>
+
+          <button>submit</button>
 
 
 
