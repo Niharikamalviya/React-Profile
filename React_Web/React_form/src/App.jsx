@@ -113,6 +113,19 @@ function App() {
           <br></br>
           <br></br>
 
+          <select
+            name="favcar"
+            id="favcar"
+            value={formData.favbar}
+            onChange={changeHandler}>
+            <option value="scorpio">scarpio</option>
+            <option value="fortuner">fortuner</option>
+            <option value="thar">thar</option>
+            <option value="baleno">baleno</option>
+            <option value="defender">defender</option>
+
+          </select>
+
           <button>submit</button>
 
 
