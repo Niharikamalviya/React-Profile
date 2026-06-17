@@ -1,120 +1,114 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // console.log(firstName);
+  // console.log(lastName);
+  // function changeFirstNameHandler(event) {
+  //   // console.log("printing first name")
+  //   // console.log(event.target.value);
+  //   setFirstName(event.target.value);
+  // }
+
+  // function changeLastNameHandler(event) {
+  //   // console.log("printing last name")
+  //   // console.log(event.target.value)
+  //   setLastName(event.target.value);
+
+  // }
+
+  // using single state to handler multiple input fields
+
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", comments: "", isVisible: true, mode: "" });
+  console.log(formData);
+
+  function changeHandler(event) {
+    const { name, value, checked, type, mode } = event.target
+    setFormData(prevFormData => {
+      return {
+        ...prevFormData,
+        // [event.target.name]: event.target.value
+        [name]: type === "checkbox" ? checked : value
+      }
+    });
+
+
+  }
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <div>
+        <form>
 
-      <div className="ticks"></div>
+          <br></br>
+          <input
+            type="text"
+            placeholder="first name"
+            onChange={changeHandler}
+            name="firstName"
+            value={formData.firstName} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          <br></br>
+          <br></br>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+          <input
+            type="text"
+            placeholder="last name"
+            onChange={changeHandler}
+            name="lastName"
+            value={formData.lastName} />
+
+          <br></br>
+          <br></br>
+
+          <textarea
+            placeholder="write text here..."
+            onChange={changeHandler}
+            name="comments"
+            value={formData.comments} />
+
+          <input
+            type="checkbox"
+            onChange={changeHandler}
+            name="isVisible"
+            id="checkBox"
+            checked={formData.isVisible}
+          />
+
+          <label htmlFor='checkBox'>I AM Agree</label>
+
+          <br></br>
+          <br></br>
+
+          <input type="radio"
+            onChange={changeHandler}
+            name="mode"
+            value="Online-Mode"
+            id="Online-Mode"
+            checked={formData.mode === "Online-Mode"}
+          />
+          <labe htmlFor="Online-Mode">Online Mode</labe>
+
+          <br></br>
+          <br></br>
+
+          <input type="radio"
+            onChange={changeHandler}
+            name="mode"
+            value="Offline-Mode"
+            id="Offline-Mode"
+            checked={formData.mode === "Offline-Mode"}
+          />
+          <labe htmlFor="Offline-Mode">Offline Mode</labe>
+
+
+
+        </form>
+      </div>
     </>
   )
 }
