@@ -7,7 +7,7 @@ const Signup = ({ setIsLoggedIn }) => {
         <Template
             title="Join the millioons to code with studyNotion for free"
             desc1="Build skills for today, tomorrow, and beyond."
-            desc1="Education to future-prof your career."
+            desc2="Education to future-prof your career."
             image={SignImg}
             formtype="signup"
             setIsLoggedIn={setIsLoggedIn}

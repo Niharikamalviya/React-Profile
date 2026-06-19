@@ -30,42 +30,54 @@ const LoginForm = ({ setIsLoggedIn }) => {
     }
 
     return (
-        <div>
-            <form onSubmit={submitHandler}>
-                <label>
-                    <p>Email Address <sup>*</sup></p>
-                    <input
-                        required
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={changeHandler}
-                        placeholder="Enter email id" />
-                </label>
 
-                <label>
-                    <p>Password <sup>*</sup></p>
-                    <input
-                        required
-                        name="password"
-                        type={showPassword ? ("text") : ("password")}
-                        value={formData.password}
-                        onChange={changeHandler}
-                        placeholder="Enter email id" />
+        <form onSubmit={submitHandler}
+            className="flex flex-col w-full gap-y-4 mt-6">
+            <label className="w-full relative">
+                <p className="text-[0.875rem] text-gray-400 mb-1 leading-[1.375rem]">Email Address
+                    <sup className="text-pink-400">*</sup></p>
+                <input
+                    required
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={changeHandler}
+                    placeholder="Enter email id"
+                    className="bg-gray-800 rounded-[0.5rem] text-gray-300 w-full p-[12px] border-b-blue-400 border-b" />
+            </label>
 
-                    <span onClick={() => setShowPassword((prev) => !prev)}>
-                        {showPassword ? (<BiShow />) : (<BiHide />)}
-                    </span>
-                    <Link to="#" >
-                        <p>Forget Password</p></Link>
-                </label>
+            <label className="w-full relative">
+                <p className="text-[0.875rem] text-gray-300 mb-1 leading-[1.375rem]">Password
+                    <sup className="text-pink-400">*</sup></p>
+                <input
+                    required
+                    name="password"
+                    type={showPassword ? ("text") : ("password")}
+                    value={formData.password}
+                    onChange={changeHandler}
+                    placeholder="Enter email id"
+                    className="bg-gray-800 rounded-[0.5rem] text-gray-400 w-full p-[12px] border-b-blue-400 border-b"
+                />
 
-                <button>
-                    Sign In
-                </button>
+                <span
+                    className="absolute right-3 top-[40px] cursor-pointer z-100"
+                    onClick={() => setShowPassword((prev) => !prev)}>
+                    {showPassword ?
+                        (<BiShow fontSize={24} fill="#AFB2BF" />) :
+                        (<BiHide fontSize={24} fill="#AFB2BF" />)}
+                </span>
 
-            </form>
-        </div>
+
+                <Link to="#" >
+                    <p className="flex justify-end mt-1 text-xs mt-1 text-blue-300 ">Forget Password</p></Link>
+            </label>
+
+            <button className="bg-yellow-500 rounded-md  font-medium text-gray-900 py-[8px] px-[12px] mt-3">
+                Sign In
+            </button>
+
+        </form>
+
 
     )
 
