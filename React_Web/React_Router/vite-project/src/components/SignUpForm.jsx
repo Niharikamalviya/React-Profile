@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 const SignUpForm = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({ firstname: "", lastname: "", email: "", password: "", comfirmPassword: "" });
+    const [formData, setFormData] = useState({ firstname: "", lastname: "", email: "", password: "", confirmPassword: "" });
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [accountType, setAccountType] = useState("student");
 
     function changeHandler(event) {
@@ -20,6 +21,7 @@ const SignUpForm = ({ setIsLoggedIn }) => {
 
         })
 
+
     }
 
     function submitHandler(event) {
@@ -31,8 +33,21 @@ const SignUpForm = ({ setIsLoggedIn }) => {
         }
 
         setIsLoggedIn(true);
-        toast.success("Sign In");
+        toast.success("Account Created");
+        const accountData = {
+            ...formData,
+            accountType
+        };
+
+
+
+        console.log("printing account data");
+        console.log(accountData);
+
         navigate("../dashboard");
+
+
+
 
     }
     return (
@@ -42,13 +57,13 @@ const SignUpForm = ({ setIsLoggedIn }) => {
                 {/* student -instructor tab */}
                 <button onClick={() => setAccountType("student")}
                     className={`${accountType === "student" ?
-                        "bg-gray-900 text-gray-300" : "bg-transparent text-gray-300 rounded-full px-2 py-2"
+                        "bg-gray-900 text-gray-300 rounded-full  px-2 py-1" : "bg-transparent text-gray-300 rounded-full px-2 py-2"
                         }`}>
                     student
                 </button>
                 <button onClick={() => setAccountType("instructor")}
                     className={`${accountType === "instructor" ?
-                        "bg-gray-900 text-gray-300" : "bg-transparent text-gray-300 px-2 py-2 rounded-full"
+                        "bg-gray-900 text-gray-300 px-2 py-1 rounded-full" : "bg-transparent text-gray-300 px-2 py-2 rounded-full"
                         }`}>
                     Instructor
                 </button>
@@ -116,7 +131,7 @@ const SignUpForm = ({ setIsLoggedIn }) => {
                             className="bg-gray-800 rounded-[0.5rem] text-gray-300 w-full p-[4px] border-b-blue-400 border-b" />
 
                         <span
-                            className="absolute right-3 top-[40px] cursor-pointer"
+                            className="absolute right-3 top-[35px] cursor-pointer"
                             onClick={() => setShowPassword((prev) => !prev)}>
                             {showPassword ? (<BiShow fontSize={24} fill="#AFB2BF" />) : (<BiHide fontSize={24} fill="#AFB2BF" />)}
                         </span>
@@ -129,16 +144,16 @@ const SignUpForm = ({ setIsLoggedIn }) => {
                         <input
                             required
                             name="confirmPassword"
-                            type="password"
+                            type={showConfirmPassword ? ("text") : ("password")}
                             value={formData.confirmPassword}
                             onChange={changeHandler}
                             placeholder="Confirm Password"
                             className="bg-gray-800 rounded-[0.5rem] text-gray-300 w-full p-[4px] border-b-blue-400 border-b" />
 
                         <span
-                            className="absolute right-3 top-[40px] cursor-pointer"
-                            onClick={() => setShowPassword((prev) => !prev)}>
-                            {showPassword ? (<BiShow fontSize={24} fill="#AFB2BF" />) : (<BiHide fontSize={24} fill="#AFB2BF" />)}
+                            className="absolute right-3 top-[35px] cursor-pointer"
+                            onClick={() => setShowConfirmPassword((prev) => !prev)}>
+                            {showConfirmPassword ? (<BiShow fontSize={24} fill="#AFB2BF" />) : (<BiHide fontSize={24} fill="#AFB2BF" />)}
                         </span>
 
 

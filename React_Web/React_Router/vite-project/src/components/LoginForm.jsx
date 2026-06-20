@@ -25,6 +25,8 @@ const LoginForm = ({ setIsLoggedIn }) => {
         event.preventDefault();
         setIsLoggedIn(true);
         toast.success("Logged In");
+        console.log("login Data");
+        console.log(formData)
         navigate("../dashboard");
 
     }
